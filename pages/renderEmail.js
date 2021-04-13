@@ -3,16 +3,33 @@ import { render } from 'react-dom'
 import { Component } from 'react';
 import EmailEditor from 'react-email-editor';
 import sample from './sample.json';
-
 let jsonfile=sample;
 
 export class App extends Component {
     render() {
-      return <div>
-          <div>
-          <button onClick={this.exportHtml}>Export HTML</button>
-          <button onClick={this.saveDesign}>Save Design</button>
-          <button onClick={this.onLoad}>Edit Saved Design</button>
+        const ContainerMain={
+            width: "100%",
+            backgroundColor: "lightgrey",
+        };
+        const OptionBar={
+            display: "flex",
+            justifyContent: "center",
+        }
+        const Button={
+            backgroundColor: "black",
+            color: "white",
+            fontSize: "15px",
+            padding: "5px 30px",
+            borderRadius: "5px",
+            margin: "10px 20px",
+            cursor: "pointer"
+        };
+
+      return <div style={ContainerMain}>
+          <div style={OptionBar}>
+          <button style={Button} onClick={this.exportHtml}>Export HTML</button>
+          <button style={Button} onClick={this.saveDesign}>Save Design</button>
+          <button style={Button} onClick={this.onLoad}>Edit Saved Design</button>
           </div>
         <EmailEditor
           ref={editor => this.editor = editor}
