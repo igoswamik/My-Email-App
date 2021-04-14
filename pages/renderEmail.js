@@ -34,6 +34,7 @@ export class App extends Component {
         <EmailEditor
           ref={editor => this.editor = editor}
         //   onLoad={this.onLoad}
+        //the ref defined in the EmailEditor component's ref will often times return undefined
         />
       </div>
     }
@@ -52,12 +53,20 @@ export class App extends Component {
       }
       onLoad = () => {
         const json = jsonfile || sample
-        if(this.editor){
-            this.editor.loadDesign(json)
-        }
-        else{
-            console.log(this.editor);
-        }
+        if (this.editor !== undefined) {
+            this.editor.loadDesign (json);
+          } else {
+            setTimeout (() => this.editor.loadDesign (json), 3000);
+          }
+
+          
+        // if(this.editor){
+        //     this.editor.loadDesign(json)
+        // }
+        // else{
+        //     console.log(this.editor);
+        // }
         
       }
   }
+  
