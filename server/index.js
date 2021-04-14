@@ -4,27 +4,36 @@ require('@babel/register')({
 });
 
 
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+/********************************** */
+const express = require('express');
+const mongoose = require('mongoose');
+// const Campground = require('../models/campground');
 
-// Connection URL
-const url ='mongodb+srv://email_app_user:HCcwc9ref42Wz7tL@cluster0.6fnvs.mongodb.net/EmailAppDatabase?retryWrites=true&w=majority' ||'mongodb://localhost:27017';
-
-// Database Name
-const dbName = 'EmailAppDatabase';
-
-// Create a new MongoClient
-const client = new MongoClient(url);
-
-// Use connect method to connect to the Server
-client.connect(function(err) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-
-  const db = client.db(dbName);
-
-  client.close();
+const dbUrl ='mongodb+srv://email_app_user:HCcwc9ref42Wz7tL@cluster0.6fnvs.mongodb.net/EmailAppDatabase?retryWrites=true&w=majority' ||'mongodb://localhost:27017/EmailAppDatabase';
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
 });
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
+
+const Schema = mongoose.Schema;
+const JsonFileSchema = new Schema({
+  JSONfile: String
+});
+
+const Jsoncollection= mongoose.model('Jsoncollection', JsonFileSchema);
+module.exports=Jsoncollection;
+const jsonFile=new Jsoncollection({JSONfile:"this should be stored in your database"});
+jsonFile.save();
+/************************************/
+
+
 
 // Import the rest of our application.
 module.exports = require('./server.js');

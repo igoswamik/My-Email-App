@@ -28,8 +28,8 @@ export class App extends Component {
       return <div style={ContainerMain}>
           <div style={OptionBar}>
           <button style={Button} onClick={this.exportHtml}>Export HTML</button>
-          <button style={Button} onClick={this.saveDesign}>Save Design</button>
-          <button style={Button} onClick={this.onLoad}>Edit Saved Design</button>
+          <button style={Button} onClick={this.saveDesign}>Save Template</button>
+          <button style={Button} onClick={this.onLoad}>Edit Saved Template</button>
           </div>
         <EmailEditor
           ref={editor => this.editor = editor}
@@ -58,7 +58,6 @@ export class App extends Component {
           } else {
             setTimeout (() => this.editor.loadDesign (json), 3000);
           }
-
           
         // if(this.editor){
         //     this.editor.loadDesign(json)
