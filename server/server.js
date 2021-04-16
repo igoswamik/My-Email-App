@@ -7,6 +7,9 @@ import Koa from "koa";
 import next from "next";
 import Router from "koa-router";
 import { ModuleFilenameHelpers } from "webpack";
+const cors = require('cors')
+const originUrl=process.env.HOST;
+
 dotenv.config();
 const port = parseInt(process.env.PORT, 10) || 8081;
 const dev = process.env.NODE_ENV !== "production";
@@ -23,6 +26,7 @@ Shopify.Context.initialize({
   API_SECRET_KEY: process.env.SHOPIFY_API_SECRET,
   SCOPES: process.env.SCOPES.split(","),
   HOST_NAME: process.env.HOST.replace(/https:\/\//, ""),
+  REACT_APP_MY_API: process.env.REACT_APP_MY_API,
   API_VERSION: ApiVersion.October20,
   IS_EMBEDDED_APP: true,
   // This should be replaced with your preferred storage strategy
@@ -81,6 +85,21 @@ app.prepare().then(async () => {
       await handleRequest(ctx);
     }
   });
+  
+/********FACING ISSUE WITH CORS*************/
+      // const corsOptions = {
+      //   origin: originUrl,
+      //   optionsSuccessStatus: 200, // For legacy browser support
+      //   methods: ['GET','POST']
+      // }
+
+      // server.use(cors(corsOptions));
+      // router.post("/apireact",(req,res)=>{
+      //     res.json({
+      //       message: 'Hello World2'
+      //     });
+      // });
+/********************/
 
   router.post("/webhooks", async (ctx) => {
     try {
@@ -90,6 +109,7 @@ app.prepare().then(async () => {
       console.log(`Failed to process webhook: ${error}`);
     }
   });
+
 
   router.post(
     "/graphql",

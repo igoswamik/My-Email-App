@@ -7,9 +7,11 @@ require('@babel/register')({
 /********************************** */
 const express = require('express');
 const mongoose = require('mongoose');
-// const Campground = require('../models/campground');
+const cors = require('cors')
+const app=express();
+const Jsoncollection = require('../models/database');
 
-const dbUrl ='mongodb+srv://email_app_user:HCcwc9ref42Wz7tL@cluster0.6fnvs.mongodb.net/EmailAppDatabase?retryWrites=true&w=majority' ||'mongodb://localhost:27017/EmailAppDatabase';
+const dbUrl =process.env.DB_URL ||'mongodb://localhost:27017/EmailAppDatabase';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -22,15 +24,27 @@ db.once("open", () => {
     console.log("Database connected");
 });
 
-const Schema = mongoose.Schema;
-const JsonFileSchema = new Schema({
-  JSONfile: String
-});
+ 
+/********FACING ISSUE WITH CORS Inside ./server/server.js*************/
+// const originUrl=process.env.HOST;
+// var corsOptions = {
+//   origin: originUrl,
+//   optionsSuccessStatus: 200, // For legacy browser support
+//   methods: ['GET','POST']
+// }
 
-const Jsoncollection= mongoose.model('Jsoncollection', JsonFileSchema);
-module.exports=Jsoncollection;
-const jsonFile=new Jsoncollection({JSONfile:"this should be stored in your database"});
-jsonFile.save();
+// app.use(cors(corsOptions));
+
+//   app.post("/apireact",(req,res)=>{
+//       res.json({
+//         message: 'Hello World'
+//     });
+//   });
+
+
+// const jsonFile=new Jsoncollection({JSONfile:"this should be stored in your database"});
+// jsonFile.save();
+
 /************************************/
 
 
