@@ -1,30 +1,35 @@
-# Shopify App Node
+# Email editor and sender Shopify App
+_(under development)_
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Build Status](https://travis-ci.com/Shopify/shopify-app-node.svg?branch=master)](https://travis-ci.com/Shopify/shopify-app-node)
+## Screenshots
+>Email Template Editor
+![edit template](https://user-images.githubusercontent.com/51289274/115055764-89c26680-9eff-11eb-863a-813dac9118a8.png)
 
-Boilerplate to create an embedded Shopify app made with Node, [Next.js](https://nextjs.org/), [Shopify-koa-auth](https://github.com/Shopify/quilt/tree/master/packages/koa-shopify-auth), [Polaris](https://github.com/Shopify/polaris-react), and [App Bridge React](https://shopify.dev/tools/app-bridge/react-components).
+>Sample Template Loaded (sample template JSON file taken from https://github.com/unlayer/react-email-editor)
+![sample template](https://user-images.githubusercontent.com/51289274/115055785-92b33800-9eff-11eb-8ea0-b456f61ba539.png)
 
-## Installation
 
-Using the [Shopify-App-CLI](https://github.com/Shopify/shopify-app-cli) run:
 
-```sh
-~/ $ shopify create project APP_NAME
-```
+## Process
 
-Or, fork and clone repo
+- [create a Shopify partner account](https://partners.shopify.com/signup).
+- [create a Development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) where you can install and test your app.
+- In the Partner dashboard, [create a new app](https://help.shopify.com/en/api/tools/partner-dashboard/your-apps#create-a-new-app). You’ll need this app’s API credentials during     the setup process.
+- Install Shopify App CLI (https://shopify.dev/tools/cli/installation)
+- use ngrok, in order to create a secure tunnel to your app running on your localhost
+- add the ngrok URL and the appropriate redirect for your OAuth callback route to your app settings
+- To make email editor visit (https://medium.com/unlayer-blog/creating-a-drag-n-drop-email-editor-with-react-db1e9eb42386)
+- Connect with MongoDB Atlas Database (https://docs.atlas.mongodb.com/getting-started/)
+- to save design template JSON you have to make a REST API and send API request from client side along with design JSON then at server side you can save this JSON in your database
+- to save JSON in database I made a mongoose schema and the idea is to convert this JSON into string using JSON.stringify() and then save it in the database collection
+- make another API call to request the JSON from database inside onLoad function which should be called when EDIT template get clicked.
+- recieve html comming inside exportHTML function on clicking exportHtml button and use it to send mail,
+- enable send mail option using nodemailer(https://www.w3schools.com/nodejs/nodejs_email.asp )
 
-## Requirements
+## Major Issues faced
+> to make email template I'm using react-email-editor (https://medium.com/unlayer-blog/creating-a-drag-n-drop-email-editor-with-react-db1e9eb42386) but The ref defined in the EmailEditor component's ref will often times return undefined. _as specified here (https://github.com/unlayer/react-email-editor/issues/22) The passed wrapper prop onLoad function gets called in direct response (synchronous) to the onLoad callback of the script being loaded. This does not always guarantee that the underlying component is already loaded by then._
 
-- If you don’t have one, [create a Shopify partner account](https://partners.shopify.com/signup).
-- If you don’t have one, [create a Development store](https://help.shopify.com/en/partners/dashboard/development-stores#create-a-development-store) where you can install and test your app.
-- In the Partner dashboard, [create a new app](https://help.shopify.com/en/api/tools/partner-dashboard/your-apps#create-a-new-app). You’ll need this app’s API credentials during the setup process.
+>facing problem on enabling CORS  which I posted here(https://stackoverflow.com/q/67123254/15259723) 
 
-## Usage
 
-This repository is used by [Shopify-App-CLI](https://github.com/Shopify/shopify-app-cli) as a scaffold for Node apps. You can clone or fork it yourself, but it’s faster and easier to use Shopify App CLI, which handles additional routine development tasks for you.
 
-## License
-
-This respository is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
