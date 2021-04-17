@@ -1,15 +1,6 @@
 # Email editor and sender Shopify App
 _(under development)_
 
-## Screenshots
->Email Template Editor
-![edit template](https://user-images.githubusercontent.com/51289274/115055764-89c26680-9eff-11eb-863a-813dac9118a8.png)
-
->Sample Template Loaded (sample template JSON file taken from https://github.com/unlayer/react-email-editor)
-![sample template](https://user-images.githubusercontent.com/51289274/115055785-92b33800-9eff-11eb-8ea0-b456f61ba539.png)
-
-
-
 ## Process
 
 - [create a Shopify partner account](https://partners.shopify.com/signup).
@@ -31,5 +22,11 @@ _(under development)_
 
 >facing problem on enabling CORS  which I posted here(https://stackoverflow.com/q/67123254/15259723) 
 
+## Screenshots
+>Email Template Editor
+![edit template](https://user-images.githubusercontent.com/51289274/115055764-89c26680-9eff-11eb-863a-813dac9118a8.png)
+
+>Sample Template Loaded (sample template JSON file taken from https://github.com/unlayer/react-email-editor)
+![sample template](https://user-images.githubusercontent.com/51289274/115055785-92b33800-9eff-11eb-8ea0-b456f61ba539.png)
 
 
