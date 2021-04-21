@@ -17,10 +17,7 @@ _(under development)_
 - recieve html comming inside exportHTML function on clicking exportHtml button and use it to send mail,
 - enable send mail option using nodemailer(https://www.w3schools.com/nodejs/nodejs_email.asp )
 
-## Major Issues faced
-> to make email template I'm using react-email-editor (https://medium.com/unlayer-blog/creating-a-drag-n-drop-email-editor-with-react-db1e9eb42386) but The ref defined in the EmailEditor component's ref will often times return undefined. _as specified here (https://github.com/unlayer/react-email-editor/issues/22) The passed wrapper prop onLoad function gets called in direct response (synchronous) to the onLoad callback of the script being loaded. This does not always guarantee that the underlying component is already loaded by then._
 
->facing problem on enabling CORS  which I posted here(https://stackoverflow.com/q/67123254/15259723) 
 
 ## Screenshots
 >Email Template Editor
